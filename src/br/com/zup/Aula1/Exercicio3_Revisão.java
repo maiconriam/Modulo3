@@ -11,39 +11,48 @@ public class Exercicio3_Revisão {
 
         int menu = 1;
         int escolhaMenu = 0;
+        int contador = 1;
+        String ingredientesDigitado = "";
 
-        while (menu != 4){
+        while (menu != 4) {
             System.out.println("Digite 1: Para cadastrar um prato");
             System.out.println("Digite 2: Para exibir a lista de pratos");
             System.out.println("Digite 3: Para excluir um prato");
             System.out.println("Digite 4: Para finalizar o programa");
             escolhaMenu = leitor.nextInt();
             leitor.nextLine();
-            if (escolhaMenu == 1){
+            if (escolhaMenu == 1) {
                 System.out.println("Por favor, digite o nome do prato: ");
                 String nomeDoPrato = leitor.nextLine();
-                System.out.println("Por favor, digite os ingredientes do prato(use virgula para separar os ingredientes)");
-                String ingredientes = leitor.nextLine();
+                System.out.println("Por favor, digite quantos ingredientes tem no prato: ");
+                int numeroIngredientes = leitor.nextInt();
+                leitor.nextLine();
 
-                prato.put(nomeDoPrato, ingredientes);
+                while (contador <= numeroIngredientes) {
+                    System.out.println("Por favor, digite os ingredientes do prato(Por favor colocar um virgula no final)");
+                    String ingredientes = leitor.nextLine();
+                    ingredientesDigitado = ingredientesDigitado + ingredientes + ", ";
+                    prato.put(nomeDoPrato, ingredientesDigitado);
+                    contador++;
+                }
             }
-            if (escolhaMenu == 2){
-                for (String listaDePratos : prato.keySet()){
-                    System.out.println("Nome do Prato: " +listaDePratos + ", Ingredientes: " +prato.get(listaDePratos));
+            if (escolhaMenu == 2) {
+                for (String listaDePratos : prato.keySet()) {
+                    System.out.println("Nome do Prato: " + listaDePratos + ", Ingredientes: " + prato.get(listaDePratos));
                 }
 
             }
-            if (escolhaMenu == 3){
+            if (escolhaMenu == 3) {
                 System.out.println("Por favor, digite o nome do prato");
                 String pratoExcluido = leitor.nextLine();
-                if (prato.containsKey(pratoExcluido)){
+                if (prato.containsKey(pratoExcluido)) {
                     System.out.println("Prato excluido com sucesso.");
                     prato.remove(pratoExcluido);
-                }else{
+                } else {
                     System.out.println("Prato não cadastrado.");
                 }
             }
-            if (escolhaMenu == 4){
+            if (escolhaMenu == 4) {
                 menu = 4;
                 System.out.println("Programa finalizado.");
             }
